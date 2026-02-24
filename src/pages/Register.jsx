@@ -11,6 +11,7 @@ const Register = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
+      // Backend route: /api/auth/register
       const { data } = await api.post("/auth/register", { name, email, password });
       localStorage.setItem("user", JSON.stringify(data));
       navigate("/");
@@ -32,6 +33,7 @@ const Register = () => {
           className="form-control mb-3"
           placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
+          autoComplete="username"
         />
         <input
           type="password"
