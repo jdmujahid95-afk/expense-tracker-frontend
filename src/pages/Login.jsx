@@ -10,7 +10,7 @@ const Login = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await api.post("/users/login", { email, password });
+      const { data } = await api.post("/auth/login", { email, password });
       localStorage.setItem("user", JSON.stringify(data));
       navigate("/");
     } catch (err) {
@@ -22,8 +22,18 @@ const Login = () => {
     <div className="container mt-5">
       <h3>Login</h3>
       <form onSubmit={submitHandler}>
-        <input className="form-control mb-3" placeholder="Email" onChange={e => setEmail(e.target.value)} />
-        <input type="password" className="form-control mb-3" placeholder="Password" onChange={e => setPassword(e.target.value)} />
+        <input
+          className="form-control mb-3"
+          placeholder="Email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          className="form-control mb-3"
+          placeholder="Password"
+          onChange={(e) => setPassword(e.target.value)}
+          autoComplete="current-password"
+        />
         <button className="btn btn-primary">Login</button>
       </form>
     </div>

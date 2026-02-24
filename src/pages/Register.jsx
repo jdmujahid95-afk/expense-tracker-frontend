@@ -11,7 +11,7 @@ const Register = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await api.post("/users/register", { name, email, password });
+      const { data } = await api.post("/auth/register", { name, email, password });
       localStorage.setItem("user", JSON.stringify(data));
       navigate("/");
     } catch (err) {
@@ -23,9 +23,23 @@ const Register = () => {
     <div className="container mt-5">
       <h3>Register</h3>
       <form onSubmit={submitHandler}>
-        <input className="form-control mb-3" placeholder="Name" onChange={e => setName(e.target.value)} />
-        <input className="form-control mb-3" placeholder="Email" onChange={e => setEmail(e.target.value)} />
-        <input type="password" className="form-control mb-3" placeholder="Password" onChange={e => setPassword(e.target.value)} />
+        <input
+          className="form-control mb-3"
+          placeholder="Name"
+          onChange={(e) => setName(e.target.value)}
+        />
+        <input
+          className="form-control mb-3"
+          placeholder="Email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          className="form-control mb-3"
+          placeholder="Password"
+          onChange={(e) => setPassword(e.target.value)}
+          autoComplete="new-password"
+        />
         <button className="btn btn-success">Register</button>
       </form>
     </div>
